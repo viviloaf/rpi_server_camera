@@ -16,7 +16,7 @@ PAGE="""\
 </head>
 <body>
 <center><h1>Raspberry Pi Camera</h1></center>
-<center><img src="stream.h264" width="640" height="480"></center>
+<center><img src="stream.mjpg" width="640" height="480"></center>
 </body>
 </html>
 """
@@ -51,7 +51,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
-        elif self.path == '/stream.h264':
+        elif self.path == '/stream.mjpg':
             self.send_response(200)
             self.send_header('Age', 0)
             self.send_header('Cache-Control', 'no-cache, private')
@@ -85,7 +85,7 @@ with picamera.PiCamera(resolution='640x480', framerate=90) as camera:
     output = StreamingOutput()
     #Uncomment the next line to change your Pi's Camera rotation (in degrees)
     #camera.rotation = 90
-    camera.start_recording(output, format='h264')
+    camera.start_recording(output, format='mjpg')
     try:
         address = ('', 8000)
         server = StreamingServer(address, StreamingHandler)
