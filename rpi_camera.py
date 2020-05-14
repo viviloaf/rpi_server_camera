@@ -16,7 +16,7 @@ PAGE="""\
 </head>
 <body>
 <center><h1>Raspberry Pi Camera</h1></center>
-<center><img src="stream.mjpeg" width="1280" height="720"></center>
+<center><img src="stream.mjpg" width="1280" height="720"></center>
 </body>
 </html>
 """
